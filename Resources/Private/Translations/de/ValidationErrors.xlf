@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="" product-name="Ahorn.FriendlyCaptcha" source-language="en" datatype="plaintext" target-language="de">
+    <body>
+      <trans-unit id="1732156724" xml:space="preserve" approved="yes">
+        <source>Error in configuration. Please try again later.</source>
+        <target xml:lang="de">Fehler in der Konfiguration. Bitte versuchen Sie es zu einem späteren Zeitpunkt nochmals.</target>
+      </trans-unit>
+      <trans-unit id="1515642243" xml:space="preserve" approved="yes">
+        <source>No captcha solution is given.</source>
+        <target xml:lang="de">Es ist keine Captcha Lösung angegeben.</target>
+      </trans-unit>
+      <trans-unit id="1735489214" xml:space="preserve" approved="yes">
+        <source>Validation server is not responding.</source>
+        <target xml:lang="de">Der Validierungsserver antwortet nicht.</target>
+      </trans-unit>
+      <trans-unit id="1380742852" xml:space="preserve" approved="yes">
+        <source>The provided captcha solution is invalid.</source>
+        <target xml:lang="de">Die übergebene Captcha Lösung ist ungültig.</target>
+      </trans-unit>
+      <trans-unit id="1380742853" xml:space="preserve" approved="yes">
+        <source>The captcha solution has expired or has already been used.</source>
+        <target xml:lang="de">Die Captcha Lösung ist abgelaufen oder wurde bereits benutzt.</target>
+      </trans-unit>
+      <trans-unit id="1380742853" xml:space="preserve" approved="yes">
+        <source>An error has occured. Please try again later.</source>
+        <target xml:lang="de">Es ist ein Fehler aufgetreten. Bitte versuchen Sie es zu einem späteren Zeitpunkt nochmals.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,26 @@
+Neos:
+  Form:
+    presets:
+      general:
+        formElementTypes:
+          'Ahorn.FriendlyCaptcha:Captcha':
+            superTypes:
+              - 'Neos.Form:FormElement'
+            renderingOptions:
+              templatePathPattern: 'resource://Ahorn.FriendlyCaptcha/Private/Form/Captcha.html'
+              validationErrorTranslationPackage: Ahorn.FriendlyCaptcha
+            implementationClassName: Ahorn\FriendlyCaptcha\FormElements\Captcha
+  Neos:
+    fusion:
+      autoInclude:
+        'Ahorn.FriendlyCaptcha': true
+    userInterface:
+      translation:
+        autoInclude:
+          'Ahorn.FriendlyCaptcha':
+            - 'NodeTypes/*'
+
+Ahorn:
+  FriendlyCaptcha:
+    siteKey: 'add-your-site-key'
+    secretKey: 'add-your-secret-key'

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file original="" product-name="Ahorn.FriendlyCaptcha" source-language="de" datatype="plaintext" target-language="en">
+		<body>
+			<trans-unit id="ui.label" xml:space="preserve">
+				<source>Friendly Captcha</source>
+				<target>Friendly Captcha</target>
+			</trans-unit>
+			<trans-unit id="properties.secretKey" xml:space="preserve">
+				<source>Geheimer Schlüssel</source>
+				<target>Secret Key</target>
+			</trans-unit>
+            <trans-unit id="properties.siteKey" xml:space="preserve">
+				<source>Websiteschlüssel</source>
+				<target>Site Key</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
