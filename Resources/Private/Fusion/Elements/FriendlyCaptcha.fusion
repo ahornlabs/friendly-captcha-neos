@@ -2,6 +2,6 @@ prototype(Ahorn.FriendlyCaptcha:Captcha.Definition) < prototype(Neos.Form.Builde
     formElementType = 'Ahorn.FriendlyCaptcha:Captcha'
 
     properties {
-        siteKey = ${Configuration.setting('Ahorn.FriendlyCaptcha.siteKey')} ? ${Configuration.setting('Ahorn.FriendlyCaptcha.siteKey')} : ${null}
+        siteKey = ${Configuration.setting('Ahorn.FriendlyCaptcha.siteKey') ? Configuration.setting('Ahorn.FriendlyCaptcha.siteKey') : null}
     }
 }
