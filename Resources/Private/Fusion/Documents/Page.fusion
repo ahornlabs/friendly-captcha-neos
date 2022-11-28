@@ -6,7 +6,7 @@ prototype(Neos.Neos:Page) {
         tagName = 'script'
         attributes {
             type = 'module'
-            src = 'https://unpkg.com/friendly-challenge@0.9.4/widget.module.min.js'
+            src = 'https://unpkg.com/friendly-challenge@0.9.8/widget.module.min.js'
             async = true
             defer = true
         }
@@ -17,7 +17,7 @@ prototype(Neos.Neos:Page) {
         tagName = 'script'
         attributes {
             nomodule = true
-            src = 'https://unpkg.com/friendly-challenge@0.9.4/widget.min.js'
+            src = 'https://unpkg.com/friendly-challenge@0.9.8/widget.min.js'
             async = true
             defer = true
         }
