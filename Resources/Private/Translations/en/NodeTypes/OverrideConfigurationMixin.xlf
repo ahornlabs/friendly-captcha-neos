@@ -5,6 +5,9 @@
             <trans-unit id="groups.config" xml:space="preserve">
                 <source>Base Configuration</source>
             </trans-unit>
+            <trans-unit id="properties.overrideOptions" xml:space="preserve">
+                <source>Override Options</source>
+            </trans-unit>
             <trans-unit id="properties.overrideKeys" xml:space="preserve">
                 <source>Override Site Key and Secret Key</source>
             </trans-unit>
@@ -13,6 +16,12 @@
             </trans-unit>
             <trans-unit id="properties.overrideSiteKey" xml:space="preserve">
                 <source>Site Key</source>
+            </trans-unit>
+            <trans-unit id="properties.overrideStartVerification" xml:space="preserve">
+                <source>Start solving puzzle</source>
+            </trans-unit>
+            <trans-unit id="properties.overrideStartVerification.selectBoxEditor.placeholder" xml:space="preserve">
+                <source>Choose option</source>
             </trans-unit>
             <trans-unit id="properties.overrideLanguage" xml:space="preserve">
                 <source>Friendly Captcha Language</source>

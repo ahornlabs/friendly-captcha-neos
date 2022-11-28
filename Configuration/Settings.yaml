@@ -25,3 +25,4 @@ Ahorn:
     siteKey: 'add-your-site-key'
     secretKey: 'add-your-secret-key'
     language: 'de'
+    startVerification: 'auto'

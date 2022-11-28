@@ -6,6 +6,7 @@ prototype(Ahorn.FriendlyCaptcha:Captcha.Definition) < prototype(Neos.Form.Builde
     properties {
         siteKey = ${Configuration.setting('Ahorn.FriendlyCaptcha.siteKey') ? Configuration.setting('Ahorn.FriendlyCaptcha.siteKey') : null}
         secretKey = ${Configuration.setting('Ahorn.FriendlyCaptcha.secretKey') ? Configuration.setting('Ahorn.FriendlyCaptcha.secretKey') : null}
+        startVerification = ${Configuration.setting('Ahorn.FriendlyCaptcha.startVerification') ? Configuration.setting('Ahorn.FriendlyCaptcha.startVerification') : null}
         language = ${String.crop(documentNode.context.dimensions[languageDimension][0], 2)}
         language.@if.languageDimensionExists = ${Configuration.setting('Neos.ContentRepository.contentDimensions.' + languageDimension) != null}
     }

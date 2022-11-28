@@ -22,6 +22,14 @@
                 <source>Site Key</source>
                 <target>Websiteschlüssel</target>
             </trans-unit>
+            <trans-unit id="properties.overrideStartVerification" xml:space="preserve">
+                <source>Start solving puzzle</source>
+                <target>Verifizierung des Puzzles starten</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideStartVerification.selectBoxEditor.placeholder" xml:space="preserve">
+                <source>Choose option</source>
+                <target>Option wählen</target>
+            </trans-unit>
             <trans-unit id="properties.overrideLanguage" xml:space="preserve">
                 <source>Language</source>
                 <target>Sprache</target>
