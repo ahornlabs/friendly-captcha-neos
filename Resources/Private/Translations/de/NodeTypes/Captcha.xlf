@@ -6,14 +6,6 @@
 				<source>Friendly Captcha</source>
 				<target>Friendly Captcha</target>
 			</trans-unit>
-			<trans-unit id="properties.secretKey" xml:space="preserve">
-				<source>Secret Key</source>
-				<target>Geheimer Schlüssel</target>
-			</trans-unit>
-            <trans-unit id="properties.siteKey" xml:space="preserve">
-				<source>Site Key</source>
-				<target>Websiteschlüssel</target>
-			</trans-unit>
 		</body>
 	</file>
 </xliff>

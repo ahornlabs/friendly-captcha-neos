@@ -10,6 +10,18 @@
                 <source>Override Options</source>
                 <target>Optionen überschreiben</target>
             </trans-unit>
+            <trans-unit id="properties.overrideKeys" xml:space="preserve">
+                <source>Override site key and secret key</source>
+                <target>Websiteschlüssel und geheimer Schlüssel überschreiben</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideSecretKey" xml:space="preserve">
+                <source>Secret Key</source>
+                <target>Geheimer Schlüssel</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideSiteKey" xml:space="preserve">
+                <source>Site Key</source>
+                <target>Websiteschlüssel</target>
+            </trans-unit>
             <trans-unit id="properties.overrideLanguage" xml:space="preserve">
                 <source>Language</source>
                 <target>Sprache</target>

@@ -5,6 +5,15 @@
             <trans-unit id="groups.config" xml:space="preserve">
                 <source>Base Configuration</source>
             </trans-unit>
+            <trans-unit id="properties.overrideKeys" xml:space="preserve">
+                <source>Override Site Key and Secret Key</source>
+            </trans-unit>
+            <trans-unit id="properties.overrideSecretKey" xml:space="preserve">
+                <source>Secret Key</source>
+            </trans-unit>
+            <trans-unit id="properties.overrideSiteKey" xml:space="preserve">
+                <source>Site Key</source>
+            </trans-unit>
             <trans-unit id="properties.overrideLanguage" xml:space="preserve">
                 <source>Friendly Captcha Language</source>
             </trans-unit>

@@ -2,7 +2,8 @@
 <f:section name="field">
      <div class="form-frc-captcha">
          <f:form.hidden property="{element.identifier}" id="{element.uniqueIdentifier}" class="form-frc-captcha-solution" value="" />
-         <div class="frc-captcha" id="frc-captcha-{element.uniqueIdentifier}" data-sitekey="{element.properties.siteKey}"></div>
+         <div class="frc-captcha" id="frc-captcha-{element.uniqueIdentifier}"
+            data-sitekey="{f:if(condition: element.properties.overrideSiteKey, then: element.properties.overrideSiteKey, else: element.properties.siteKey)}"
             data-lang="{f:if(condition: element.properties.overrideLanguage, then: element.properties.overrideLanguage, else: element.properties.language)}"></div>
      </div>
      <script>!function (d, w) { w.frcCaptchaCount= w.frcCaptchaCount || 0; var g = d.querySelectorAll(".form-frc-captcha")[w.frcCaptchaCount], a = g.closest("form"); a.addEventListener("submit", function (t) { g.querySelector(".form-frc-captcha-solution").value = g.querySelector(".frc-captcha-solution").value}, !1); w.frcCaptchaCount++;}(document, window)</script>
