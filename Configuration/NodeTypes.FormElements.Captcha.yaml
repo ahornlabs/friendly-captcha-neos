@@ -1,11 +1,8 @@
 'Ahorn.FriendlyCaptcha:Captcha':
   superTypes:
     'Neos.Form.Builder:FormElement': true
+    'Ahorn.FriendlyCaptcha:OverrideConfigurationMixin': true
   ui:
     label: i18n
     icon: 'resource://Ahorn.FriendlyCaptcha/Icons/frc-icon.svg'
     group: 'form.custom'
-    inspector:
-      groups:
-        'formElement':
-          icon: 'resource://Ahorn.FriendlyCaptcha/Icons/frc-icon.svg'

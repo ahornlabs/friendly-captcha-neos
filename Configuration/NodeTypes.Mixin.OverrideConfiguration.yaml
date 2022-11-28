@@ -1,0 +1,14 @@
+'Ahorn.FriendlyCaptcha:OverrideConfigurationMixin':
+  abstract: true
+  ui:
+    inspector:
+      tabs:
+        friendlyCaptcha:
+          label: 'Friendly Captcha'
+          icon: 'resource://Ahorn.FriendlyCaptcha/Icons/frc-icon.svg'
+          position: 15
+      groups:
+        config:
+          label: i18n
+          icon: 'resource://Ahorn.FriendlyCaptcha/Icons/frc-icon.svg'
+          tab: friendlyCaptcha
