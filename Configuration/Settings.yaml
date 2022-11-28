@@ -24,3 +24,4 @@ Ahorn:
   FriendlyCaptcha:
     siteKey: 'add-your-site-key'
     secretKey: 'add-your-secret-key'
+    language: 'de'
