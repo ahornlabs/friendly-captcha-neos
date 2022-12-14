@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file original="" product-name="Ahorn.FriendlyCaptcha" source-language="en" datatype="plaintext" target-language="de">
+        <body>
+            <trans-unit id="groups.config" xml:space="preserve">
+                <source>Base Configuration</source>
+                <target>Grundkonfiguration</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideOptions" xml:space="preserve">
+                <source>Override Options</source>
+                <target>Optionen überschreiben</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideKeys" xml:space="preserve">
+                <source>Override site key and secret key</source>
+                <target>Websiteschlüssel und geheimer Schlüssel überschreiben</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideSecretKey" xml:space="preserve">
+                <source>Secret Key</source>
+                <target>Geheimer Schlüssel</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideSiteKey" xml:space="preserve">
+                <source>Site Key</source>
+                <target>Websiteschlüssel</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideStartVerification" xml:space="preserve">
+                <source>Start solving puzzle</source>
+                <target>Verifizierung des Puzzles starten</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideStartVerification.selectBoxEditor.placeholder" xml:space="preserve">
+                <source>Choose option</source>
+                <target>Option wählen</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage" xml:space="preserve">
+                <source>Language</source>
+                <target>Sprache</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.placeholder" xml:space="preserve">
+                <source>Choose language</source>
+                <target>Sprache wählen</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.de" xml:space="preserve">
+                <source>German</source>
+                <target>Deutsch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.en" xml:space="preserve">
+                <source>English</source>
+                <target>Englisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.fr" xml:space="preserve">
+                <source>French</source>
+                <target>Französisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.it" xml:space="preserve">
+                <source>Italian</source>
+                <target>Italienisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.nl" xml:space="preserve">
+                <source>Dutch</source>
+                <target>Niederländisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.pt" xml:space="preserve">
+                <source>Portuguese</source>
+                <target>Portugiesisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.es" xml:space="preserve">
+                <source>Spanish</source>
+                <target>Spanisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.ca" xml:space="preserve">
+                <source>Catalan</source>
+                <target>Katalanisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.da" xml:space="preserve">
+                <source>Danish</source>
+                <target>Dänisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.ja" xml:space="preserve">
+                <source>Japanese</source>
+                <target>Japanisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.ru" xml:space="preserve">
+                <source>Russian</source>
+                <target>Russisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.sv" xml:space="preserve">
+                <source>Swedish</source>
+                <target>Schwedisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.el" xml:space="preserve">
+                <source>Greek</source>
+                <target>Griechisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.uk" xml:space="preserve">
+                <source>Ukrainian</source>
+                <target>Ukrainisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.bg" xml:space="preserve">
+                <source>Bulgarian</source>
+                <target>Bulgarisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.cs" xml:space="preserve">
+                <source>Czech</source>
+                <target>Tschechisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.sk" xml:space="preserve">
+                <source>Slovak</source>
+                <target>Slowakisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.no" xml:space="preserve">
+                <source>Norwegian</source>
+                <target>Norwegisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.fi" xml:space="preserve">
+                <source>Finnish</source>
+                <target>Finnisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.lv" xml:space="preserve">
+                <source>Latvian</source>
+                <target>Lettisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.lt" xml:space="preserve">
+                <source>Lithuanian</source>
+                <target>Litauisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.pl" xml:space="preserve">
+                <source>Polish</source>
+                <target>Polnisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.et" xml:space="preserve">
+                <source>Estonian</source>
+                <target>Estnisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.hr" xml:space="preserve">
+                <source>Croatian</source>
+                <target>Kroatisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.sr" xml:space="preserve">
+                <source>Serbian</source>
+                <target>Serbisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.sl" xml:space="preserve">
+                <source>Slovenian</source>
+                <target>Slowenisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.tr" xml:space="preserve">
+                <source>Turkish</source>
+                <target>Türkisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.hu" xml:space="preserve">
+                <source>Hungarian</source>
+                <target>Ungarisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.ro" xml:space="preserve">
+                <source>Romanian</source>
+                <target>Rumänisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideLanguage.selectBoxEditor.values.zh" xml:space="preserve">
+                <source>Chinese</source>
+                <target>Chinesisch</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
