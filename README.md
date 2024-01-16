@@ -9,7 +9,7 @@ This package add a form element which integrates [Friendly Captcha](https://frie
 The package can be installed via Composer.
 
 ```bash
-$ composer require ahornlabs/friendlycaptcha
+$ composer require ahorn/friendlycaptcha
 ```
 
 ## Configuration
