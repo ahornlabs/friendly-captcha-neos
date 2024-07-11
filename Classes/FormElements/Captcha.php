@@ -35,7 +35,7 @@ class Captcha extends AbstractFormElement
             $secretKey = $properties['secretKey'] ? $properties['secretKey'] : ($this->settings['secretKey'] ? $this->settings['secretKey'] : null);
         }
 
-        if (empty($secretKey)) {
+        if (empty($secretKey) || $secretKey == 'add-your-secret-key') {
             $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
             $processingRule->getProcessingMessages()->addError(new Error('Error. Please try again later.', 17942348245));
             return;
