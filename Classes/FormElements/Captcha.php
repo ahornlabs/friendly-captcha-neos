@@ -29,7 +29,11 @@ class Captcha extends AbstractFormElement
     public function onSubmit(FormRuntime $formRuntime, &$elementValue)
     {
         $properties = $this->getProperties();
-        $secretKey = $properties['secretKey'] ? $properties['secretKey'] : ($this->settings['secretKey'] ? $this->settings['secretKey'] : null);
+        if($properties['overrideKeys'] && isset($properties['overrideSecretKey'])) {
+            $secretKey = $properties['overrideSecretKey'];
+        } else {
+            $secretKey = $properties['secretKey'] ? $properties['secretKey'] : ($this->settings['secretKey'] ? $this->settings['secretKey'] : null);
+        }
 
         if (empty($secretKey)) {
             $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
