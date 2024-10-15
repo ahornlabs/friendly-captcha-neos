@@ -29,7 +29,11 @@ class Captcha extends AbstractFormElement
     public function onSubmit(FormRuntime $formRuntime, &$elementValue)
     {
         $properties = $this->getProperties();
-        $secretKey = $properties['secretKey'] ? $properties['secretKey'] : ($this->settings['secretKey'] ? $this->settings['secretKey'] : null);
+        if ($this->settings['secretKey']) {
+            $secretKey = $properties['secretKey'] ?: $this->settings['secretKey'];
+        } else {
+            $secretKey = $properties['secretKey'] ?: null;
+        }
 
         if (empty($secretKey)) {
             $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
@@ -45,7 +49,7 @@ class Captcha extends AbstractFormElement
             $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
             $processingRule->getProcessingMessages()->addError(new Error('You forgot to add the solution parameter.', 1515642243));
         } else {
-                $verify = $this->verifyCaptchaSoltion('https://api.friendlycaptcha.com/api/v1/siteverify', $query);
+                $verify = $this->verifyCaptchaSolution('https://api.friendlycaptcha.com/api/v1/siteverify', $query);
                 $response = $verify ? json_decode($verify, true) : [];
 
             if (!$response) {
@@ -74,10 +78,19 @@ class Captcha extends AbstractFormElement
                 $processingRule->getProcessingMessages()->addError(new Error($result['error'], 1380742853));
             } else {
                 $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
-                $processingRule->getProcessingMessages()->addError(new Error($result['error'], 1380742851));
-                return;
+                $processingRule->getProcessingMessages()->addError(new Error((string)$result['error'], 1380742851));
             }
         }
+    }
+
+    /**
+     * @deprecated Use the (corrctly named) verifyCaptchaSolution(…) method
+     * @see verifyCaptchaSolution
+     */
+
+    public function verifyCaptchaSoltion($url, $options)
+    {
+        return $this->verifyCaptchaSolution($url, $options);
     }
 
     /**
@@ -86,17 +99,16 @@ class Captcha extends AbstractFormElement
      * @param string $url Friendly Captcha verify url
      * @param string $options Query string with options like secret key
      *
-     * @return array
+     * @return bool|string
      */
 
-    public function verifyCaptchaSoltion($url, $options)
+    public function verifyCaptchaSolution($url, $options)
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_TIMEOUT, 1);
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $options);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $resp = curl_exec($ch);
-        return $resp;
+        return curl_exec($ch);
     }
 }
