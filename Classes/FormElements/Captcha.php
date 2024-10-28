@@ -52,9 +52,10 @@ class Captcha extends AbstractFormElement
                 $verify = $this->verifyCaptchaSolution('https://api.friendlycaptcha.com/api/v1/siteverify', $query);
                 $response = $verify ? json_decode($verify, true) : [];
 
-            if (!$response) {
+            if (empty($response)) {
                 $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
                 $processingRule->getProcessingMessages()->addError(new Error('Validation server is not responding.', 1735489214));
+                return;
             }
 
             if ($response['success']) {
