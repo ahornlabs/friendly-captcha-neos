@@ -22,6 +22,10 @@
         <source>The provided captcha solution is invalid.</source>
         <target>Die übergebene Captcha Lösung ist ungültig.</target>
       </trans-unit>
+      <trans-unit id="8876423767" xml:space="preserve" approved="yes">
+        <source>The provided captcha solution is empty.</source>
+        <target>Es wurde keine Captcha Lösung mit gesendet.</target>
+      </trans-unit>
       <trans-unit id="1380742853" xml:space="preserve" approved="yes">
         <source>The captcha solution has expired or has already been used.</source>
         <target>Die Captcha Lösung ist abgelaufen oder wurde bereits benutzt.</target>

@@ -14,6 +14,9 @@
         <trans-unit id="1380742852" xml:space="preserve" approved="yes">
             <source>The provided captcha solution is invalid.</source>
         </trans-unit>
+        <trans-unit id="8876423767" xml:space="preserve" approved="yes">
+            <source>The provided captcha solution is empty.</source>
+        </trans-unit>
         <trans-unit id="1380742853" xml:space="preserve" approved="yes">
             <source>The captcha solution has expired or has already been used.</source>
         </trans-unit>
