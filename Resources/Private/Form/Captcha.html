@@ -4,8 +4,10 @@
          <f:form.hidden property="{element.identifier}" id="{element.uniqueIdentifier}" class="form-frc-captcha-response" value="" />
          <div class="frc-captcha" id="frc-captcha-{element.uniqueIdentifier}"
             data-sitekey="{f:if(condition: element.properties.overrideSiteKey, then: element.properties.overrideSiteKey, else: element.properties.siteKey)}"
+            data-theme="{f:if(condition: element.properties.overrideTheme, then: element.properties.overrideTheme, else: element.properties.theme)}"
+            data-api-endpoint="{f:if(condition: element.properties.overrideApiEndpoint, then: element.properties.overrideApiEndpoint, else: element.properties.apiEndpoint)}"
             data-start="{f:if(condition: element.properties.overrideStartVerification, then: element.properties.overrideStartVerification, else: element.properties.startVerification)}"
-            data-lang="{f:if(condition: element.properties.overrideLanguage, then: element.properties.overrideLanguage, else: element.properties.language)}"></div>
+            lang="{f:if(condition: element.properties.overrideLanguage, then: element.properties.overrideLanguage, else: element.properties.language)}"></div>
      </div>
      <script>!function (d, w) { w.frcCaptchaCount= w.frcCaptchaCount || 0; var g = d.querySelectorAll(".form-frc-captcha")[w.frcCaptchaCount], a = g.closest("form"); a.addEventListener("submit", function (t) { g.querySelector(".form-frc-captcha-response").value = g.querySelector(".frc-captcha-response").value}, !1); w.frcCaptchaCount++;}(document, window)</script>
 </f:section>
