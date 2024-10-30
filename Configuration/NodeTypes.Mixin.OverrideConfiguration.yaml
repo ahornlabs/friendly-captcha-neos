@@ -147,10 +147,10 @@
             allowEmpty: true
             multiple: false
             values:
-              global:
-                label: 'global'
-              eu:
-                label: 'eu'
+              'global':
+                label: i18n
+              'eu':
+                label: i18n
     overrideTheme:
       type: string
       ui:
@@ -164,9 +164,9 @@
             allowEmpty: true
             multiple: false
             values:
-              auto:
-                label: 'auto'
-              light:
-                label: 'light'
-              dark:
-                label: 'dark'
+              'auto':
+                label: i18n
+              'light':
+                label: i18n
+              'dark':
+                label: i18n
