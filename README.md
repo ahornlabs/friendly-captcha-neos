@@ -90,7 +90,7 @@ You can override the following configurations in the node properties:
 We added some error codes for better error handling.
 If you see an error code in the frontend it is most likely to be an configuration error.
 
-* 1732156724: The X-API-Key header or api Code not set.
+* 1732156724: The X-API-Key header or apiKey not set.
 * 5786245981: The apiKey is invalid.
 * 7956325875: Sitekey is invalid.
 * 1380742851: An unknown error has occurred. Check the settings.
