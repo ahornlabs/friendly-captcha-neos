@@ -6,18 +6,19 @@ prototype(Neos.Neos:Page) {
         tagName = 'script'
         attributes {
             type = 'module'
-            src = 'https://unpkg.com/friendly-challenge@0.9.8/widget.module.min.js'
+            src = 'https://cdn.jsdelivr.net/npm/@friendlycaptcha/sdk@0.1.9/site.min.js'
             async = true
             defer = true
         }
     }
+
     friendlyCaptchaWidgetScript = Neos.Fusion:Tag {
         @position = 'after closingHeadTag'
 
         tagName = 'script'
         attributes {
             nomodule = true
-            src = 'https://unpkg.com/friendly-challenge@0.9.8/widget.min.js'
+            src = 'https://cdn.jsdelivr.net/npm/@friendlycaptcha/sdk@0.1.9/site.min.js'
             async = true
             defer = true
         }
