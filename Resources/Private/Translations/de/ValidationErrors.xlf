@@ -3,12 +3,20 @@
   <file original="" product-name="Ahorn.FriendlyCaptcha" source-language="en" datatype="plaintext" target-language="de">
     <body>
       <trans-unit id="17942348245" xml:space="preserve" approved="yes">
-        <source>Error. Please try again later.</source>
-        <target>Fehler in der Konfiguration. Bitte versuchen Sie es zu einem späteren Zeitpunkt nochmals.</target>
+        <source>Error Code: 17942348245. Please try again later.</source>
+        <target>Fehlercode: 17942348245. Bitte versuchen Sie es zu einem späteren Zeitpunkt nochmals.</target>
       </trans-unit>
       <trans-unit id="1732156724" xml:space="preserve" approved="yes">
-        <source>Error in configuration. Please try again later.</source>
-        <target>Fehler in der Konfiguration. Bitte versuchen Sie es zu einem späteren Zeitpunkt nochmals.</target>
+        <source>Error Code: 1732156724. Please try again later.</source>
+        <target>Fehlercode: 1732156724. Bitte versuchen Sie es zu einem späteren Zeitpunkt nochmals.</target>
+      </trans-unit>
+      <trans-unit id="5786245981" xml:space="preserve" approved="yes">
+        <source>Error Code: 5786245981. Please try again later.</source>
+        <target>Fehlercode: 5786245981. Bitte versuchen Sie es zu einem späteren Zeitpunkt nochmals.</target>
+      </trans-unit>
+      <trans-unit id="7956325875" xml:space="preserve" approved="yes">
+        <source>Error Code: 7956325875. Please try again later.</source>
+        <target>Fehlercode: 7956325875. Bitte versuchen Sie es zu einem späteren Zeitpunkt nochmals.</target>
       </trans-unit>
       <trans-unit id="1515642243" xml:space="preserve" approved="yes">
         <source>No captcha solution is given.</source>
@@ -27,12 +35,16 @@
         <target>Es wurde keine Captcha Lösung mit gesendet.</target>
       </trans-unit>
       <trans-unit id="1380742853" xml:space="preserve" approved="yes">
-        <source>The captcha solution has expired or has already been used.</source>
-        <target>Die Captcha Lösung ist abgelaufen oder wurde bereits benutzt.</target>
+        <source>The captcha solution has expired.</source>
+        <target>Die Captcha Lösung ist abgelaufen.</target>
+      </trans-unit>
+      <trans-unit id="1185587569" xml:space="preserve" approved="yes">
+        <source>The captcha solution was already used.</source>
+        <target>Die Captcha Lösung wurde bereits benutzt.</target>
       </trans-unit>
       <trans-unit id="1380742851" xml:space="preserve" approved="yes">
-        <source>An error has occured. Please try again later.</source>
-        <target>Es ist ein Fehler aufgetreten. Bitte versuchen Sie es zu einem späteren Zeitpunkt nochmals.</target>
+        <source>Error Code: 1380742851. Please try again later.</source>
+        <target>Fehlercode: 1380742851. Bitte versuchen Sie es zu einem späteren Zeitpunkt nochmals.</target>
       </trans-unit>
     </body>
   </file>
