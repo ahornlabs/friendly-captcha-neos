@@ -25,10 +25,10 @@ You need to add your Site Key (`siteKey`) and API Key (`apiKey`) from you Friend
 Ahorn:
   FriendlyCaptcha:
     siteKey: 'add-you-site-key'
-    apiKey: 'add-you-secret-key'
+    apiKey: 'add-you-api-key'
     language: 'de'
     startVerification: 'auto'
-    defaultServer: 'global'
+    apiEndpoint: 'global'
     theme: 'auto'
 ```
 
@@ -41,22 +41,22 @@ Current status can be found at <https://developer.friendlycaptcha.com/docs/v2/gu
 
 ### startVerification
 
-* auto: the solver will start as soon as possible. This is recommended if the user will definitely be submitting the CAPTCHA solution (e.g. there is only one form on the page), this offers the best user experience.
+* auto: `Default` the solver will start as soon as possible. This is recommended if the user will definitely be submitting the CAPTCHA solution (e.g. there is only one form on the page), this offers the best user experience.
 * focus: as soon as the form containing the widget fires the focusin event the solver starts, or when the user presses the start button in the widget. This is recommended for webpages where only few users will actually submit the form. This is the default.
 * none: the solver only starts when the user presses the button or it is programatically started by calling start().
 
-### api-endpoint
+### apiEndpoint
 
 By default the widget fetches puzzles from https://global.frcapi.com/api/v2/captcha, which serves puzzles globally. As a premium service we offer an alternative endpoint that serves requests from datacenters in Germany only. 
 
 * `eu`: Service requires a Friendly Captcha Advanced or Enterprise plan. Endpoint hosted in germany
-* `global`: Default. Global service served from all over the world.
+* `global`: `Default`. Global service served from all over the world.
 
 ### theme
 
 * `light`: A light theme (default).
 * `dark`: A dark "night mode" theme.
-* `auto`: Match the user's operating system or browser preference settings.
+* `auto`: `Default`Match the user's operating system or browser preference settings.
 
 In production environment we strictly recommend to use environment variables to set the values.
 
