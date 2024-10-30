@@ -6,6 +6,7 @@ use Neos\Flow\Annotations as Flow;
 use Neos\Error\Messages\Error;
 use Neos\Form\Core\Model\AbstractFormElement;
 use Neos\Form\Core\Runtime\FormRuntime;
+use GuzzleHttp\Client;
 
 class Captcha extends AbstractFormElement
 {
@@ -15,7 +16,6 @@ class Captcha extends AbstractFormElement
      * @var array
      */
     protected $settings = [];
-
 
     /**
      * Check the friendly captcha solution before submitting form.
@@ -29,39 +29,34 @@ class Captcha extends AbstractFormElement
     public function onSubmit(FormRuntime $formRuntime, &$elementValue)
     {
         $properties = $this->getProperties();
-        
         if($properties['overrideKeys'] && isset($properties['overrideSecretKey'])) {
           $apiKey = $properties['overrideSecretKey'];
         } else {
           $apiKey = $properties['apiKey'] ? $properties['apiKey'] : null;
         }
 
-        if($properties['overrideKeys'] && isset($properties['overrideApiEndpoint'])) { 
+        if($properties['overrideKeys'] && isset($properties['overrideApiEndpoint'])) {
           $apiEndpoint = $properties['overrideApiEndpoint'];
         } else {
-          $apiEndpoint = $properties['overrideTheme'];
+          $apiEndpoint = $properties['apiEndpoint'];
         }
-        
 
         if (empty($apiKey) || $apiKey == 'add-your-api-key') {
             $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
             $processingRule->getProcessingMessages()->addError(new Error('Error. Please try again later.', 17942348245));
             return;
         }
-        
-        $params = array('solution' => $elementValue);
-        $query = http_build_query($params, '', '&');
 
-        $result = ['verified' => false, 'error' => ''];
-
-        if (empty($params['solution'])) {
+        if (empty($elementValue)) {
           $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
           $processingRule->getProcessingMessages()->addError(new Error('You forgot to add the solution parameter.', 1515642243));
-          return; 
+          return;
         }
-        
-        $verify = $this->verifyCaptchaSolutionV2('https://'.$apiEndpoint.'.frcapi.com/api/v2/captcha/siteverify', $query, $apiKey);
+
+        $verify = $this->verifyCaptchaSolutionV2('https://'.$apiEndpoint.'.frcapi.com/api/v2/captcha/siteverify', $elementValue, $apiKey);
         $response = $verify ? json_decode($verify, true) : [];
+
+
 
         if (empty($response)) {
             $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
@@ -69,44 +64,36 @@ class Captcha extends AbstractFormElement
             return;
         }
 
-        if ($response['success']) {
-            $result['verified'] = true;
-        } else {
-            $result['error'] = is_array($response['errors']) ?
-                reset($response['errors']) :
-                $response['errors'];
-        }
-        
 
-        if ($result['verified'] === false) {
+        if (!$response['success']) {
 
-            if ($result['error']['error_code'] === 'auth_required') {
+            if ($response['error']['error_code'] === 'auth_required') {
               $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
-              $processingRule->getProcessingMessages()->addError(new Error($result['error'], 1732156724));
-            } elseif($result['error']['error_code'] === 'auth_invalid') {
+              $processingRule->getProcessingMessages()->addError(new Error($response['error']['error_code'], 1732156724));
+            } elseif($response['error']['error_code'] === 'auth_invalid') {
               $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
-              $processingRule->getProcessingMessages()->addError(new Error($result['error'], 5786245981));
-            } elseif($result['error']['error_code'] === 'sitekey_invalid') {
+              $processingRule->getProcessingMessages()->addError(new Error($response['error']['error_code'], 5786245981));
+            } elseif($response['error']['error_code'] === 'sitekey_invalid') {
               $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
-              $processingRule->getProcessingMessages()->addError(new Error($result['error'], 7956325875));
-            } elseif($result['error']['error_code'] === 'response_missing') {
+              $processingRule->getProcessingMessages()->addError(new Error($response['error']['error_code'], 7956325875));
+            } elseif($response['error']['error_code'] === 'response_missing') {
               $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
-              $processingRule->getProcessingMessages()->addError(new Error($result['error'], 8876423767));
-            } elseif($result['error']['error_code'] === 'response_invalid') {
+              $processingRule->getProcessingMessages()->addError(new Error($response['error']['error_code'], 8876423767));
+            } elseif($response['error']['error_code'] === 'response_invalid') {
               $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
-              $processingRule->getProcessingMessages()->addError(new Error($result['error'], 1380742852));
-            } elseif($result['error']['error_code'] === 'response_timeout') {
+              $processingRule->getProcessingMessages()->addError(new Error($response['error']['error_code'], 1380742852));
+            } elseif($response['error']['error_code'] === 'response_timeout') {
               $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
-              $processingRule->getProcessingMessages()->addError(new Error($result['error'], 1380742853));
-            } elseif($result['error']['error_code'] === 'response_duplicate') {
+              $processingRule->getProcessingMessages()->addError(new Error($response['error']['error_code'], 1380742853));
+            } elseif($response['error']['error_code'] === 'response_duplicate') {
               $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
-              $processingRule->getProcessingMessages()->addError(new Error($result['error'], 1185587569));
-            } elseif($result['error']['error_code'] === 'bad_request') {
+              $processingRule->getProcessingMessages()->addError(new Error($response['error']['error_code'], 1185587569));
+            } elseif($response['error']['error_code'] === 'bad_request') {
               $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
-              $processingRule->getProcessingMessages()->addError(new Error($result['error'], 1380742851));
+              $processingRule->getProcessingMessages()->addError(new Error($response['error']['error_code'], 1380742851));
             } else{
               $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
-              $processingRule->getProcessingMessages()->addError(new Error($result['error'], 1380742851));
+              $processingRule->getProcessingMessages()->addError(new Error($response['error']['error_code'], 1380742851));
             }
         }
     }
@@ -121,19 +108,54 @@ class Captcha extends AbstractFormElement
      * @return bool|string
      */
 
-    public function verifyCaptchaSolutionV2($url, $options, $apiKey)
+    public function verifyCaptchaSolutionV2($url, $response, $apiKey)
     {
-        $ch = curl_init();
-        $headers = [
-          'X-API-Key:	'.$$apiKey
-        ];
-        curl_setopt($ch, CURLOPT_TIMEOUT, 1);
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $options);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        $response =  curl_exec($ch);
-        curl_close($ch);
-        return $response;
+
+        $data = ['response' => $response];
+        $client = new Client();
+        try {
+            $apiResponse = $client->post($url, [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                    'X-API-Key' => $apiKey,
+                ],
+                'json' => $data,
+                'timeout' => 5,
+                'verify' => false, // TODO hier was überlegen
+            ]);
+
+            $body = $apiResponse->getBody()->getContents();
+
+            return $body;
+
+        } catch (\Exception $e) {
+            return null;
+        }
+
+
+
+        // $ch = curl_init();
+        // $headers = [
+        //     'Content-Type: application/json',
+        //     'Accept: application/json',
+        //     'X-API-Key: ' . $apiKey,
+        // ];
+        // $data = ['response' => $response];
+        // $jsonData = json_encode($data);
+        // curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        // curl_setopt($ch, CURLOPT_URL, $url);
+        // curl_setopt($ch, CURLOPT_POST, true);
+        // curl_setopt($ch, CURLOPT_POSTFIELDS,  $jsonData);
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        // $curlResponse = curl_exec($ch);
+
+        // $this->logger->info('frienldycaptcha-url ' . $url);
+        // $this->logger->info('frienldycaptcha-options ' . $jsonData);
+        // $this->logger->info('frienldycaptcha-apikey ' . $apiKey);
+        // $this->logger->info('frienldycaptcha-response ' . $curlResponse);
+        // curl_close($ch);
+        // return $curlResponse;
     }
 }
