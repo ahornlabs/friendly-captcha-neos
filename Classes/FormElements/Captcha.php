@@ -29,13 +29,19 @@ class Captcha extends AbstractFormElement
     public function onSubmit(FormRuntime $formRuntime, &$elementValue)
     {
         $properties = $this->getProperties();
-        if ($this->settings['apiKey']) {
-            $apiKey = $properties['apiKey'] ?: $this->settings['apiKey'];
+        
+        if($properties['overrideKeys'] && isset($properties['overrideSecretKey'])) {
+          $apiKey = $properties['overrideSecretKey'];
         } else {
-            $apiKey = $properties['apiKey'] ?: null;
+          $apiKey = $properties['apiKey'] ? $properties['apiKey'] : null;
         }
 
-        $defaultServer = $properties['defaultServer'] ? $properties['defaultServer'] : 'eu';
+        if($properties['overrideKeys'] && isset($properties['overrideApiEndpoint'])) { 
+          $apiEndpoint = $properties['overrideApiEndpoint'];
+        } else {
+          $apiEndpoint = $properties['overrideTheme'];
+        }
+        
 
         if (empty($apiKey) || $apiKey == 'add-your-api-key') {
             $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
@@ -54,7 +60,7 @@ class Captcha extends AbstractFormElement
           return; 
         }
         
-        $verify = $this->verifyCaptchaSolutionV2('https://'.$defaultServer.'.frcapi.com/api/v2/captcha/siteverify', $query, $apiKey);
+        $verify = $this->verifyCaptchaSolutionV2('https://'.$apiEndpoint.'.frcapi.com/api/v2/captcha/siteverify', $query, $apiKey);
         $response = $verify ? json_decode($verify, true) : [];
 
         if (empty($response)) {
@@ -75,9 +81,14 @@ class Captcha extends AbstractFormElement
         if ($result['verified'] === false) {
 
             if ($result['error']['error_code'] === 'auth_required') {
-            } elseif($result['error']['error_code'] === 'auth_required') {
+              $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
+              $processingRule->getProcessingMessages()->addError(new Error($result['error'], 1732156724));
             } elseif($result['error']['error_code'] === 'auth_invalid') {
+              $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
+              $processingRule->getProcessingMessages()->addError(new Error($result['error'], 5786245981));
             } elseif($result['error']['error_code'] === 'sitekey_invalid') {
+              $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
+              $processingRule->getProcessingMessages()->addError(new Error($result['error'], 7956325875));
             } elseif($result['error']['error_code'] === 'response_missing') {
               $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
               $processingRule->getProcessingMessages()->addError(new Error($result['error'], 8876423767));
@@ -85,25 +96,18 @@ class Captcha extends AbstractFormElement
               $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
               $processingRule->getProcessingMessages()->addError(new Error($result['error'], 1380742852));
             } elseif($result['error']['error_code'] === 'response_timeout') {
+              $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
+              $processingRule->getProcessingMessages()->addError(new Error($result['error'], 1380742853));
             } elseif($result['error']['error_code'] === 'response_duplicate') {
+              $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
+              $processingRule->getProcessingMessages()->addError(new Error($result['error'], 1185587569));
             } elseif($result['error']['error_code'] === 'bad_request') {
+              $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
+              $processingRule->getProcessingMessages()->addError(new Error($result['error'], 1380742851));
             } else{
-
+              $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
+              $processingRule->getProcessingMessages()->addError(new Error($result['error'], 1380742851));
             }
-
-            /*  
-                $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
-                $processingRule->getProcessingMessages()->addError(new Error($result['error'], 1732156724));
-            } elseif ($result['error'] === 'solution_invalid') {
-
-            } elseif ($result['error'] === 'solution_timeout_or_duplicate') {
-                $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
-                $processingRule->getProcessingMessages()->addError(new Error($result['error'], 1380742853));
-            } else {
-                $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
-                $processingRule->getProcessingMessages()->addError(new Error((string)$result['error'], 1380742851));
-            }
-            */
         }
     }
 
@@ -112,6 +116,7 @@ class Captcha extends AbstractFormElement
      *
      * @param string $url Friendly Captcha verify url
      * @param string $options Query string with options like secret key
+     * @param string $apiKey a string with the api key
      *
      * @return bool|string
      */
