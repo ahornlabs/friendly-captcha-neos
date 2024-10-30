@@ -155,6 +155,7 @@
       type: string
       ui:
         label: i18n
+        reloadIfChanged: true
         inspector:
           group: config
           hidden: 'ClientEval:node.properties.overrideOptions ? false : true'
