@@ -17,6 +17,10 @@ The package can be installed via Composer.
 $ composer require ahorn/friendlycaptcha
 ```
 
+## Updato from v1
+
+Change `secretKey` to `apiKey`
+
 ## Configuration
 
 You need to add your Site Key (`siteKey`) and API Key (`apiKey`) from you Friendly Captcha v2 account. You can specify the default widget language and when the widget should start solving the puzzle. Please have a look at the official [Friendly Captcha Widget API](https://developer.friendlycaptcha.com/docs/v2/) if you need more informations.
