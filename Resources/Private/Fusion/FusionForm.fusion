@@ -1,8 +1,7 @@
 prototype(Ahorn.FriendlyCaptcha:Fusion.Captcha) < prototype(Neos.Fusion.Form:Component.Field) {
   siteKey = ${Configuration.setting('Ahorn.FriendlyCaptcha.siteKey') ? Configuration.setting('Ahorn.FriendlyCaptcha.siteKey') : null}
   startVerification = ${Configuration.setting('Ahorn.FriendlyCaptcha.startVerification') ? Configuration.setting('Ahorn.FriendlyCaptcha.startVerification') : 'auto'}
-  language = ${String.crop(documentNode.context.dimensions[languageDimension][0], 2)}
-  language.@if.languageDimensionExists = ${Configuration.setting('Neos.ContentRepository.contentDimensions.' + languageDimension) != null}
+  currentLanguage = ${node.context.targetDimensions.language}
   apiEndpoint = ${Configuration.setting('Ahorn.FriendlyCaptcha.apiEndpoint') ? Configuration.setting('Ahorn.FriendlyCaptcha.apiEndpoint') : 'global'}
   theme = ${Configuration.setting('Ahorn.FriendlyCaptcha.theme') ? Configuration.setting('Ahorn.FriendlyCaptcha.theme') : 'auto'}
 
@@ -12,7 +11,7 @@ prototype(Ahorn.FriendlyCaptcha:Fusion.Captcha) < prototype(Neos.Fusion.Form:Com
            data-sitekey={props.siteKey}
            data-theme={props.theme}
            data-start={props.startVerification}
-           data-lang={props.language}
+           data-lang={props.currentLanguage}
            data-form-field-name={field.getName()}>
            <input type="hidden" 
            name={field.getName()} 
