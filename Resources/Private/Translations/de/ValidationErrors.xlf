@@ -3,7 +3,7 @@
   <file original="" product-name="Ahorn.FriendlyCaptcha" source-language="en" datatype="plaintext" target-language="de">
     <body>
       <trans-unit id="17002" xml:space="preserve" approved="yes">
-        <source>Captcha missing.</source>
+        <source>Please confirm that you are not a robot.</source>
         <target>Bitte bestätigen Sie, dass Sie kein Roboter sind.</target>
       </trans-unit>
       <trans-unit id="17001" xml:space="preserve" approved="yes">
