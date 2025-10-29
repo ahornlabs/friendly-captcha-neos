@@ -2,6 +2,12 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file original="" product-name="Ahorn.FriendlyCaptcha" source-language="en" datatype="plaintext">
     <body>
+      <trans-unit id="17002" xml:space="preserve" approved="yes">
+        <source>Captcha missing.</source>
+      </trans-unit>
+      <trans-unit id="17001" xml:space="preserve" approved="yes">
+        <source>Missing API key.</source>
+      </trans-unit>
       <trans-unit id="17942348245" xml:space="preserve" approved="yes">
         <source>Error Code: 17942348245. Please try again later.</source>
       </trans-unit>

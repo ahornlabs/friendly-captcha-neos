@@ -8,6 +8,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Psr\Log\LoggerInterface;
 use Neos\Flow\Annotations as Flow;
+use Neos\Flow\I18n\Translator;
 
 /**
  * Validator for FriendlyCaptcha
@@ -31,6 +32,9 @@ class FriendlyCaptchaValidator extends AbstractValidator
      * @var LoggerInterface
      */
     protected $logger;
+
+    #[Flow\Inject]
+    protected Translator $translator; 
 
     #[Flow\InjectConfiguration(path: 'apiKey')]
     protected ?string $apiKey = null;
@@ -56,11 +60,11 @@ class FriendlyCaptchaValidator extends AbstractValidator
     {
         
         if (empty($this->apiKey) || $this->apiKey == 'add-your-api-key') {
-            $this->addError('Missing API key.', 17001);
+            $this->addTranslatedErrorById(17001, 'Missing API key.');
             return;
         }
          if (!is_string($value) || $value === ''||  $value === '.UNACTIVATED' || $value === '.ACTIVATED') {
-            $this->addError('Captcha missing.', 17002);
+            $this->addTranslatedErrorById(17002, 'Captcha missing affee.');
             return;
         }
 
@@ -73,7 +77,7 @@ class FriendlyCaptchaValidator extends AbstractValidator
         $response = $raw ? json_decode($raw, true) : [];
 
         if (empty($response)) {
-            $this->addError('Validation server is not responding.', 1735489214);
+            $this->addTranslatedErrorById(1735489214, 'Validation server is not responding.');
         }
 
         if (!$response['success']) {
@@ -89,7 +93,7 @@ class FriendlyCaptchaValidator extends AbstractValidator
                 'bad_request'        => 1380742851,
                 default              => 1380742851,
             };
-            $this->addError($code, $errorId);
+            $this->addTranslatedErrorById($errorId, $code);
         }
     }
 
@@ -126,5 +130,19 @@ class FriendlyCaptchaValidator extends AbstractValidator
                 return null;
             }
         }
+    }
+
+    private function addTranslatedErrorById(int $id, string $fallback = 'Validation error'): void
+    {
+        $msg = $this->translator->translateById(
+            (string)$id,
+            [],               
+            null,             
+            null,             
+            'ValidationErrors',
+            'Ahorn.FriendlyCaptcha' 
+        ) ?? $fallback;
+
+        $this->addError($msg, $id);
     }
 }
