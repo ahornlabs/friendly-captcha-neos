@@ -59,7 +59,7 @@ class FriendlyCaptchaValidator extends AbstractValidator
             $this->addError('Missing API key.', 17001);
             return;
         }
-        if (!is_string($value) || $value === '') {
+         if (!is_string($value) || $value === ''||  $value === '.UNACTIVATED' || $value === '.ACTIVATED') {
             $this->addError('Captcha missing.', 17002);
             return;
         }
