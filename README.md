@@ -130,7 +130,11 @@ set in the schema
 
 ```yaml
       schema {
-          captcha = ${Form.Schema.string().validator('Ahorn.FriendlyCaptcha:FriendlyCaptcha', {apiKey: abc123, siteKey: abc123, apiEndpoint: eu}) }
+          captcha = ${Form.Schema.string().validator('Ahorn.FriendlyCaptcha:FriendlyCaptcha',{
+            siteKey: 'override-siteKey',
+            apiKey: 'override-apiKey',
+            apiEndpoint: 'global'
+          })}
       }
 ```
 
