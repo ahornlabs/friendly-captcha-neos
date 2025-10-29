@@ -102,3 +102,39 @@ If you see an error code in the frontend it is most likely to be an configuratio
 * 5786245981: The apiKey is invalid.
 * 7956325875: Sitekey is invalid.
 * 1380742851: An unknown error has occurred. Check the settings.
+
+---
+## Neos Fusion Form
+
+```yaml
+ process {
+
+      content = afx`
+          <Neos.Fusion.Form:FieldContainer field.name="captcha">
+            <Ahorn.FriendlyCaptcha:Fusion.Captcha />
+          </Neos.Fusion.Form:FieldContainer>
+    `
+
+      schema {
+          captcha = ${Form.Schema.string().validator('Ahorn.FriendlyCaptcha:FriendlyCaptcha')}
+      }
+  }
+```
+or use options to set API Key
+
+        'apiKey'      => [null, 'Override API key', 'string', false],
+        'siteKey'     => [null, 'Override site key', 'string', false],
+        'apiEndpoint' => [null, 'Override endpoint: global|eu|us', 'string', false],
+
+set in the schema
+
+```yaml
+      schema {
+          captcha = ${Form.Schema.string().validator('Ahorn.FriendlyCaptcha:FriendlyCaptcha',{
+            siteKey: 'override-siteKey',
+            apiKey: 'override-apiKey',
+            apiEndpoint: 'global'
+          })}
+      }
+```
+

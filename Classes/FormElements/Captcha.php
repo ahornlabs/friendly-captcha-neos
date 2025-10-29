@@ -65,37 +65,21 @@ class Captcha extends AbstractFormElement
             return;
         }
 
-
         if (!$response['success']) {
-
-            if ($response['error']['error_code'] === 'auth_required') {
-              $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
-              $processingRule->getProcessingMessages()->addError(new Error($response['error']['error_code'], 1732156724));
-            } elseif($response['error']['error_code'] === 'auth_invalid') {
-              $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
-              $processingRule->getProcessingMessages()->addError(new Error($response['error']['error_code'], 5786245981));
-            } elseif($response['error']['error_code'] === 'sitekey_invalid') {
-              $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
-              $processingRule->getProcessingMessages()->addError(new Error($response['error']['error_code'], 7956325875));
-            } elseif($response['error']['error_code'] === 'response_missing') {
-              $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
-              $processingRule->getProcessingMessages()->addError(new Error($response['error']['error_code'], 8876423767));
-            } elseif($response['error']['error_code'] === 'response_invalid') {
-              $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
-              $processingRule->getProcessingMessages()->addError(new Error($response['error']['error_code'], 1380742852));
-            } elseif($response['error']['error_code'] === 'response_timeout') {
-              $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
-              $processingRule->getProcessingMessages()->addError(new Error($response['error']['error_code'], 1380742853));
-            } elseif($response['error']['error_code'] === 'response_duplicate') {
-              $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
-              $processingRule->getProcessingMessages()->addError(new Error($response['error']['error_code'], 1185587569));
-            } elseif($response['error']['error_code'] === 'bad_request') {
-              $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
-              $processingRule->getProcessingMessages()->addError(new Error($response['error']['error_code'], 1380742851));
-            } else{
-              $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
-              $processingRule->getProcessingMessages()->addError(new Error($response['error']['error_code'], 1380742851));
-            }
+            $code = $response['error']['error_code'] ?? 'bad_request';
+            $errorId = match ($code) {
+                'auth_required'      => 1732156724,
+                'auth_invalid'       => 5786245981,
+                'sitekey_invalid'    => 7956325875,
+                'response_missing'   => 8876423767,
+                'response_invalid'   => 1380742852,
+                'response_timeout'   => 1380742853,
+                'response_duplicate' => 1185587569,
+                'bad_request'        => 1380742851,
+                default              => 1380742851,
+            };
+            $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
+            $processingRule->getProcessingMessages()->addError(new Error($code, $errorId));
         }
     }
 
