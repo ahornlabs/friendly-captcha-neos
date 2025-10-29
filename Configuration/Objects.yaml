@@ -1,3 +1,3 @@
 # Configuration/Objects.yaml
 Ahorn\FriendlyCaptcha\Validation\Validator\FriendlyCaptchaValidator:
-  scope: singleton
+  scope: prototype

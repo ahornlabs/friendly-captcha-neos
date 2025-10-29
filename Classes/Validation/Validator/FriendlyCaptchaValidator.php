@@ -14,7 +14,7 @@ use Neos\Flow\I18n\Translator;
  * Validator for FriendlyCaptcha
  *
  * @api
- * @Flow\Scope("singleton")
+ * @Flow\Scope("prototype")
  */
 class FriendlyCaptchaValidator extends AbstractValidator
 {
