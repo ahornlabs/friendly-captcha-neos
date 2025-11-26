@@ -30,17 +30,16 @@ class Captcha extends AbstractFormElement
     public function onSubmit(FormRuntime $formRuntime, &$elementValue)
     {
         $properties = $this->getProperties();
-        if($properties['overrideKeys'] && isset($properties['overrideSecretKey'])) {
-          $apiKey = $properties['overrideSecretKey'];
-        } else {
-          $apiKey = $properties['apiKey'] ? $properties['apiKey'] : null;
-        }
+        
+        $overrideKeys = !empty($properties['overrideKeys']);
 
-        if($properties['overrideKeys'] && isset($properties['overrideApiEndpoint'])) {
-          $apiEndpoint = $properties['overrideApiEndpoint'];
-        } else {
-          $apiEndpoint = $properties['apiEndpoint'];
-        }
+        $apiKey = $overrideKeys && !empty($properties['overrideApiKey'])
+            ? $properties['overrideApiKey']
+            : ($this->settings['apiKey'] ?? null);
+
+        $apiEndpoint = $overrideKeys && !empty($properties['overrideApiEndpoint'])
+            ? $properties['overrideApiEndpoint']
+            : ($this->settings['apiEndpoint'] ?? 'global');
 
         if (empty($apiKey) || $apiKey == 'add-your-api-key') {
             $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
