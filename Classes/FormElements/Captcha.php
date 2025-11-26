@@ -8,7 +8,6 @@ use Neos\Form\Core\Model\AbstractFormElement;
 use Neos\Form\Core\Runtime\FormRuntime;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
-use Composer\CaBundle\CaBundle;
 
 class Captcha extends AbstractFormElement
 {
@@ -103,15 +102,6 @@ class Captcha extends AbstractFormElement
             'X-API-Key' => $apiKey,
         ];
 
-
-        if($this ->settings['composer'] === 'php') {
-            $verify = CaBundle::getBundledCaBundlePath();
-        } elseif ($this ->settings['cert'] === 'false') {
-            $verify = false;
-        } else {
-            $verify = true;
-        }
-
         $client = new Client();
 
         try {
@@ -119,7 +109,6 @@ class Captcha extends AbstractFormElement
                 'headers' => $headers,
                 'json' => $data,
                 'timeout' => 5,
-                'verify' => $verify,
             ]);
 
             $body = $apiResponse->getBody()->getContents();

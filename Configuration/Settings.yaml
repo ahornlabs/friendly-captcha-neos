@@ -28,4 +28,3 @@ Ahorn:
     startVerification: 'auto'
     apiEndpoint: 'global'
     theme: 'auto'
-    cert: 'default'
