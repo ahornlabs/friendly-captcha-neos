@@ -4,12 +4,20 @@ prototype(Ahorn.FriendlyCaptcha:Captcha.Definition) < prototype(Neos.Form.Builde
     @context.languageDimension = ${Configuration.setting('Neos.ContentRepository.dimensionTypes.language') != null ? Configuration.setting('Neos.ContentRepository.dimensionTypes.language') : 'language'}
 
     properties {
-        siteKey = ${Configuration.setting('Ahorn.FriendlyCaptcha.siteKey') ? Configuration.setting('Ahorn.FriendlyCaptcha.siteKey') : null}
-        apiKey = ${Configuration.setting('Ahorn.FriendlyCaptcha.apiKey') ? Configuration.setting('Ahorn.FriendlyCaptcha.apiKey') : null}
-        startVerification = ${Configuration.setting('Ahorn.FriendlyCaptcha.startVerification') ? Configuration.setting('Ahorn.FriendlyCaptcha.startVerification') : 'auto'}
+        overrideKeys = ${q(node).property('overrideKeys')}
+        overrideSiteKey = ${q(node).property('overrideSiteKey')}
+        overrideApiKey = ${q(node).property('overrideApiKey')}
+        overrideOptions = ${q(node).property('overrideOptions')}
+        overrideLanguage = ${q(node).property('overrideLanguage')}
+        overrideStartVerification = ${q(node).property('overrideStartVerification')}
+        overrideApiEndpoint = ${q(node).property('overrideApiEndpoint')}
+        overrideTheme = ${q(node).property('overrideTheme')}
+        siteKey = ${this.overrideKeys ? this.overrideSiteKey : Configuration.setting('Ahorn.FriendlyCaptcha.siteKey')}
+        apiKey = ${this.overrideKeys ? this.overrideApiKey : Configuration.setting('Ahorn.FriendlyCaptcha.apiKey')}
+        startVerification = ${this.overrideOptions ? this.overrideStartVerification : Configuration.setting('Ahorn.FriendlyCaptcha.startVerification')}
+        apiEndpoint = ${this.overrideOptions ? this.overrideApiEndpoint : Configuration.setting('Ahorn.FriendlyCaptcha.apiEndpoint')}
+        theme = ${this.overrideOptions ? this.overrideTheme : Configuration.setting('Ahorn.FriendlyCaptcha.theme')}
         language = ${String.crop(documentNode.context.dimensions[languageDimension][0], 2)}
         language.@if.languageDimensionExists = ${Configuration.setting('Neos.ContentRepository.contentDimensions.' + languageDimension) != null}
-        apiEndpoint = ${Configuration.setting('Ahorn.FriendlyCaptcha.apiEndpoint') ? Configuration.setting('Ahorn.FriendlyCaptcha.apiEndpoint') : 'global'}
-        theme = ${Configuration.setting('Ahorn.FriendlyCaptcha.theme') ? Configuration.setting('Ahorn.FriendlyCaptcha.theme') : 'auto'}
     }
 }
