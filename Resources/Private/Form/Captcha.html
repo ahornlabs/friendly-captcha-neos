@@ -1,13 +1,73 @@
 <f:layout name="Neos.Form:Field" />
 <f:section name="field">
+     <f:if condition="{element.properties.overrideKeys}">
+     <f:then>
+          <f:if condition="{element.properties.overrideSiteKey}">
+               <f:then>
+               <f:variable name="siteKey" value="{element.properties.overrideSiteKey}" />
+               </f:then>
+               <f:else>
+               <f:variable name="siteKey" value="{element.properties.siteKey}" />
+               </f:else>
+          </f:if>
+     </f:then>
+     <f:else>
+          <f:variable name="siteKey" value="{element.properties.siteKey}" />
+     </f:else>
+    </f:if>
+    
+    <f:if condition="{element.properties.overrideOptions}">
+    <f:then>
+          <f:if condition="{element.properties.overrideTheme}">
+               <f:then>
+                    <f:variable name="theme" value="{element.properties.overrideTheme}" />
+               </f:then>
+               <f:else>
+                    <f:variable name="theme" value="{element.properties.theme}" />
+               </f:else>
+          </f:if>
+          <f:if condition="{element.properties.overrideStartVerification}">
+               <f:then>
+                    <f:variable name="startVerification" value="{element.properties.overrideStartVerification}" />
+               </f:then>
+               <f:else>
+                    <f:variable name="startVerification" value="{element.properties.startVerification}" />
+               </f:else>
+          </f:if>
+          <f:if condition="{element.properties.overrideApiEndpoint}">
+               <f:then>
+                    <f:variable name="apiEndpoint" value="{element.properties.overrideApiEndpoint}" />
+               </f:then>
+               <f:else>
+                    <f:variable name="apiEndpoint" value="{element.properties.apiEndpoint}" />
+               </f:else>
+          </f:if>
+          <f:if condition="{element.properties.overrideLanguage}">
+               <f:then>
+                    <f:variable name="language" value="{element.properties.overrideLanguage}" />
+               </f:then>
+               <f:else>
+                    <f:variable name="language" value="{element.properties.language}" />
+               </f:else>
+          </f:if>
+    </f:then>
+    <f:else>
+        <f:variable name="theme" value="{element.properties.theme}" />
+        <f:variable name="startVerification" value="{element.properties.startVerification}" />
+        <f:variable name="apiEndpoint" value="{element.properties.apiEndpoint}" />
+        <f:variable name="language" value="{element.properties.language}" />
+    </f:else>
+     </f:if>
+    
+
      <div class="form-frc-captcha">
-         <f:form.hidden property="{element.identifier}" id="{element.uniqueIdentifier}" class="form-frc-captcha-response" value="" />
-         <div class="frc-captcha" id="frc-captcha-{element.uniqueIdentifier}"
-            data-sitekey="{element.properties.siteKey}"
-            data-theme="{f:if(condition: element.properties.theme, then: element.properties.theme, else: 'auto')}"
-            data-api-endpoint="{f:if(condition: element.properties.apiEndpoint, then: element.properties.apiEndpoint, else: 'global')}"
-            data-start="{f:if(condition: element.properties.startVerification, then: element.properties.startVerification, else: 'auto')}"
-            lang="{element.properties.language}"></div>
+          <f:form.hidden property="{element.identifier}" id="{element.uniqueIdentifier}" class="form-frc-captcha-response" value="" />
+               <div class="frc-captcha" id="frc-captcha-{element.uniqueIdentifier}"
+                    data-sitekey="{siteKey}"
+                    data-theme="{f:if(condition: theme, then: theme, else: 'auto')}"
+                    data-api-endpoint="{f:if(condition: apiEndpoint, then: apiEndpoint, else: 'global')}"
+                    data-start="{f:if(condition: startVerification, then: startVerification, else: 'auto')}"
+                    lang="{f:if(condition: language, then: language, else: 'de')}"></div>
      </div>
      <script>!function (d, w) { w.frcCaptchaCount= w.frcCaptchaCount || 0;var g = d.querySelectorAll(".form-frc-captcha")[w.frcCaptchaCount], a = g.closest("form"); a.addEventListener("submit", function (t) { g.querySelector(".form-frc-captcha-response").value = g.querySelector('input[name="frc-captcha-response"]').value}, !1); w.frcCaptchaCount++;}(document, window)</script>
 </f:section>
