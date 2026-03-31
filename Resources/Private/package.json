@@ -1,0 +1,13 @@
+{
+  "name": "ahorn-friendly-captcha-neos",
+  "version": "1.0.0",
+  "description": "An Ahorn plugin for Neos CMS integrating Friendly Captcha to provide privacy-friendly, bot-resistant form protection via NPM-delivered JavaScript assets.",
+  "dependencies": {
+    "@friendlycaptcha/sdk": "0.1.32"
+  },
+  "scripts": {
+    "build:friendlycaptcha": "mkdir -p ../Public/JavaScript/FriendlyCaptcha && cp node_modules/@friendlycaptcha/sdk/site.min.js ../Public/JavaScript/FriendlyCaptcha/site.min.js && cp node_modules/@friendlycaptcha/sdk/site.compat.min.js ../Public/JavaScript/FriendlyCaptcha/site.compat.min.js"
+  },
+  "author": "ahorn.gmbh",
+  "license": "MIT"
+}
