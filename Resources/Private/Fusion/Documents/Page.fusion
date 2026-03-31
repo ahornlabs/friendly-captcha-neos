@@ -6,7 +6,9 @@ prototype(Neos.Neos:Page) {
         tagName = 'script'
         attributes {
             type = 'module'
-            src = 'https://cdn.jsdelivr.net/npm/@friendlycaptcha/sdk@0.1.32/site.min.js'
+            src = Neos.Fusion:ResourceUri {
+                path = 'resource://Ahorn.FriendlyCaptcha/Public/JavaScript/FriendlyCaptcha/site.min.js'
+            }
             async = true
             defer = true
         }
@@ -18,8 +20,22 @@ prototype(Neos.Neos:Page) {
         tagName = 'script'
         attributes {
             nomodule = true
-            src = 'https://cdn.jsdelivr.net/npm/@friendlycaptcha/sdk@0.1.32/site.min.js'
+            src = Neos.Fusion:ResourceUri {
+                path = 'resource://Ahorn.FriendlyCaptcha/Public/JavaScript/FriendlyCaptcha/site.compat.min.js'
+            }
             async = true
+            defer = true
+        }
+    }
+
+    friendlyCaptchaInitScript = Neos.Fusion:Tag {
+        @position = 'after friendlyCaptchaWidgetScript'
+
+        tagName = 'script'
+        attributes {
+            src = Neos.Fusion:ResourceUri {
+                path = 'resource://Ahorn.FriendlyCaptcha/Public/JavaScript/FriendlyCaptcha/captcha-init.js'
+            }
             defer = true
         }
     }
