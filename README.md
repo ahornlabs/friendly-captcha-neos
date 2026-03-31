@@ -13,5 +13,5 @@ $ composer require ahorn/friendlycaptcha
 ```
 
 ## don't use main branch
-Use branch 2.0 for FriendlyCaptcha v2
+Use branch 2.0 for FriendlyCaptcha v2  
 Use branch 1.0 for FriendlyCaptcha v1
