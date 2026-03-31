@@ -12,6 +12,6 @@ The package can be installed via Composer.
 $ composer require ahorn/friendlycaptcha
 ```
 
-## dont use main branch
+## don't use main branch
 Use branch 2.0 for FriendlyCaptcha v2
 Use branch 1.0 for FriendlyCaptcha v1
