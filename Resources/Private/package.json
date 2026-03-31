@@ -9,5 +9,5 @@
     "build:friendlycaptcha": "mkdir -p ../Public/JavaScript/FriendlyCaptcha && cp node_modules/@friendlycaptcha/sdk/site.min.js ../Public/JavaScript/FriendlyCaptcha/site.min.js && cp node_modules/@friendlycaptcha/sdk/site.compat.min.js ../Public/JavaScript/FriendlyCaptcha/site.compat.min.js"
   },
   "author": "ahorn.gmbh",
-  "license": "MIT"
+  "license": "GPL-3.0-or-later"
 }
