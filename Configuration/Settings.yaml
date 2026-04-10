@@ -23,6 +23,8 @@ Neos:
 Ahorn:
   FriendlyCaptcha:
     siteKey: 'add-your-site-key'
-    secretKey: 'add-your-secret-key'
+    apiKey: 'add-your-api-key'
     language: 'de'
     startVerification: 'auto'
+    apiEndpoint: 'global'
+    theme: 'auto'

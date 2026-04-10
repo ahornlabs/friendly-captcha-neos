@@ -9,13 +9,43 @@
                 <source>Override Options</source>
             </trans-unit>
             <trans-unit id="properties.overrideKeys" xml:space="preserve">
-                <source>Override Site Key and Secret Key</source>
+                <source>Override site key and secret key</source>
             </trans-unit>
-            <trans-unit id="properties.overrideSecretKey" xml:space="preserve">
-                <source>Secret Key</source>
+            <trans-unit id="properties.overrideApiKey" xml:space="preserve">
+                <source>Api Key</source>
             </trans-unit>
             <trans-unit id="properties.overrideSiteKey" xml:space="preserve">
                 <source>Site Key</source>
+            </trans-unit>
+            <trans-unit id="properties.overrideApiEndpoint" xml:space="preserve">
+                <source>Please choose api endpoint</source>
+            </trans-unit>
+            <trans-unit id="properties.overrideApiEndpoint.selectBoxEditor.placeholder" xml:space="preserve">
+                <source>Choose end point</source>
+            </trans-unit>
+            <trans-unit id="properties.overrideApiEndpoint.selectBoxEditor.values.global" xml:space="preserve">
+                <source>Endpoints global hosted</source>
+            </trans-unit>
+            <trans-unit id="properties.overrideApiEndpoint.selectBoxEditor.values.eu" xml:space="preserve">
+                <source>Endpoints hosted in germany</source>
+            </trans-unit>
+            <trans-unit id="properties.overrideTheme.selectBoxEditor.values.dark" xml:space="preserve">
+                <source>Darktheme</source>
+            </trans-unit>
+            <trans-unit id="properties.overrideTheme" xml:space="preserve">
+                <source>Please choose theme</source>
+            </trans-unit>
+            <trans-unit id="properties.overrideTheme.selectBoxEditor.values.auto" xml:space="preserve">
+                <source>Automatic</source>
+            </trans-unit>
+            <trans-unit id="properties.overrideTheme.selectBoxEditor.values.light" xml:space="preserve">
+                <source>Lighttheme</source>
+            </trans-unit>
+            <trans-unit id="properties.overrideTheme.selectBoxEditor.values.dark" xml:space="preserve">
+                <source>Darktheme</source>
+            </trans-unit>
+            <trans-unit id="properties.overrideTheme.selectBoxEditor.placeholder" xml:space="preserve">
+                <source>Choose theme</source>
             </trans-unit>
             <trans-unit id="properties.overrideStartVerification" xml:space="preserve">
                 <source>Start solving puzzle</source>
@@ -24,7 +54,7 @@
                 <source>Choose option</source>
             </trans-unit>
             <trans-unit id="properties.overrideLanguage" xml:space="preserve">
-                <source>Friendly Captcha Language</source>
+                <source>Language</source>
             </trans-unit>
             <trans-unit id="properties.overrideLanguage.selectBoxEditor.placeholder" xml:space="preserve">
                 <source>Choose language</source>

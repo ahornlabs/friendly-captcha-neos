@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".form-frc-captcha").forEach(function(e){var r=e.closest("form");r&&r.addEventListener("submit",function(){var n=e.querySelector('input[name="frc-captcha-response"]'),t=e.querySelector(".form-frc-captcha-response");n&&t&&(t.value=n.value)},!1)})});

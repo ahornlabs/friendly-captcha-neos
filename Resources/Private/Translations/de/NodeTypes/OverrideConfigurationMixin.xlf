@@ -14,13 +14,53 @@
                 <source>Override site key and secret key</source>
                 <target>Websiteschlüssel und geheimer Schlüssel überschreiben</target>
             </trans-unit>
-            <trans-unit id="properties.overrideSecretKey" xml:space="preserve">
-                <source>Secret Key</source>
-                <target>Geheimer Schlüssel</target>
+            <trans-unit id="properties.overrideApiKey" xml:space="preserve">
+                <source>Api Key</source>
+                <target>Api Schlüssel</target>
             </trans-unit>
             <trans-unit id="properties.overrideSiteKey" xml:space="preserve">
                 <source>Site Key</source>
                 <target>Websiteschlüssel</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideApiEndpoint" xml:space="preserve">
+                <source>Please choose api endpoint</source>
+                <target>Bitte wählen Sie den API Endpunkt</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideApiEndpoint.selectBoxEditor.placeholder" xml:space="preserve">
+                <source>Choose end point</source>
+                <target>Api-Endpunkt wählen</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideApiEndpoint.selectBoxEditor.values.global" xml:space="preserve">
+                <source>Endpoints global hosted</source>
+                <target>Weltweit gehostete Endpunkte</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideApiEndpoint.selectBoxEditor.values.eu" xml:space="preserve">
+                <source>Endpoints hosted in germany</source>
+                <target>In Deutschland gehostede Endpunkte</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideTheme.selectBoxEditor.values.dark" xml:space="preserve">
+                <source>Darktheme</source>
+                <target>Dunkles Farbschema</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideTheme" xml:space="preserve">
+                <source>Please choose theme</source>
+                <target>Bitte wählen Sie das Farbschema</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideTheme.selectBoxEditor.values.auto" xml:space="preserve">
+                <source>Automatic</source>
+                <target>Automatisch</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideTheme.selectBoxEditor.values.light" xml:space="preserve">
+                <source>Lighttheme</source>
+                <target>Helles Farbschema</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideTheme.selectBoxEditor.values.dark" xml:space="preserve">
+                <source>Darktheme</source>
+                <target>Dunkles Farbschema</target>
+            </trans-unit>
+            <trans-unit id="properties.overrideTheme.selectBoxEditor.placeholder" xml:space="preserve">
+                <source>Choose theme</source>
+                <target>Farbschema wählen</target>
             </trans-unit>
             <trans-unit id="properties.overrideStartVerification" xml:space="preserve">
                 <source>Start solving puzzle</source>
