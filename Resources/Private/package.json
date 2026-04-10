@@ -5,7 +5,11 @@
   "dependencies": {
     "@friendlycaptcha/sdk": "0.1.32"
   },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  },
   "scripts": {
+    "build:captcha-init": "esbuild JavaScript/captcha-init.js --bundle=false --minify --outfile=../Public/JavaScript/FriendlyCaptcha/captcha-init.js",
     "build:friendlycaptcha": "node -e \"const fs=require('fs'); const path=require('path'); const destDir=path.resolve(__dirname,'../Public/JavaScript/FriendlyCaptcha'); fs.mkdirSync(destDir,{recursive:true}); fs.copyFileSync(path.resolve(__dirname,'node_modules/@friendlycaptcha/sdk/site.min.js'), path.join(destDir,'site.min.js')); fs.copyFileSync(path.resolve(__dirname,'node_modules/@friendlycaptcha/sdk/site.compat.min.js'), path.join(destDir,'site.compat.min.js'));\""
   },
   "author": "ahorn.gmbh",

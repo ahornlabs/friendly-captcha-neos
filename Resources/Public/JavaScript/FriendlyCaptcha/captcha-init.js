@@ -1,13 +1,1 @@
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.form-frc-captcha').forEach(function (g) {
-        var a = g.closest('form');
-        if (!a) return;
-        a.addEventListener('submit', function () {
-            var response = g.querySelector('input[name="frc-captcha-response"]');
-            var hidden = g.querySelector('.form-frc-captcha-response');
-            if (response && hidden) {
-                hidden.value = response.value;
-            }
-        }, false);
-    });
-});
+document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".form-frc-captcha").forEach(function(e){var r=e.closest("form");r&&r.addEventListener("submit",function(){var n=e.querySelector('input[name="frc-captcha-response"]'),t=e.querySelector(".form-frc-captcha-response");n&&t&&(t.value=n.value)},!1)})});
