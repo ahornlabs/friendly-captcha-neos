@@ -5,7 +5,7 @@
     "description": "Form Element to integrate Friendly Captcha into the Flow Form Framework",
     "require": {
         "neos/form": "^5.0 || ^6.0",
-        "neos/fusion-form": "^3.0.2",
+        "neos/fusion-form": "^2.2 || ^3.0",,
         "guzzlehttp/psr7": "^1.4 || ^2.0",
         "guzzlehttp/guzzle": "^7.0 || ^8.0"
     },
