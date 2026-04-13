@@ -2,12 +2,11 @@
 
 namespace Ahorn\FriendlyCaptcha\FormElements;
 
+use Ahorn\FriendlyCaptcha\Service\FriendlyCaptchaVerificationService;
 use Neos\Flow\Annotations as Flow;
 use Neos\Error\Messages\Error;
 use Neos\Form\Core\Model\AbstractFormElement;
 use Neos\Form\Core\Runtime\FormRuntime;
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
 
 class Captcha extends AbstractFormElement
 {
@@ -17,6 +16,12 @@ class Captcha extends AbstractFormElement
      * @var array
      */
     protected $settings = [];
+
+    /**
+     * @Flow\Inject
+     * @var FriendlyCaptchaVerificationService
+     */
+    protected $friendlyCaptchaVerificationService;
 
     /**
      * Check the friendly captcha solution before submitting form.
@@ -41,6 +46,10 @@ class Captcha extends AbstractFormElement
             ? $properties['overrideApiEndpoint']
             : ($this->settings['apiEndpoint'] ?? 'global');
 
+        $siteKey = $overrideKeys && !empty($properties['overrideSiteKey'])
+            ? $properties['overrideSiteKey']
+            : ($this->settings['siteKey'] ?? null);
+
         if (empty($apiKey) || $apiKey == 'add-your-api-key') {
             $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
             $processingRule->getProcessingMessages()->addError(new Error('Error. Please try again later.', 17942348245));
@@ -54,8 +63,12 @@ class Captcha extends AbstractFormElement
         }
 
 
-        $verify = $this->verifyCaptchaSolutionV2('https://'.$apiEndpoint.'.frcapi.com/api/v2/captcha/siteverify', $elementValue, $apiKey);
-        $response = $verify ? json_decode($verify, true) : [];
+        $response = $this->friendlyCaptchaVerificationService->verifyV2(
+            $elementValue,
+            $apiKey,
+            $siteKey,
+            $apiEndpoint
+        );
 
         if (empty($response)) {
             $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
@@ -81,46 +94,4 @@ class Captcha extends AbstractFormElement
         }
     }
 
-    /**
-     * Verify the generated solution with Friendly Captcha API.
-     *
-     * @param string $url Friendly Captcha verify url
-     * @param string $response string with value of friendlyCaptcha Widget
-     * @param string $apiKey a string with the api key
-     *
-     * @return bool|string
-     */
-
-    public function verifyCaptchaSolutionV2($url, $response, $apiKey)
-    {
-
-        $data = ['response' => $response];
-        $headers = [
-            'Content-Type' => 'application/json',
-            'Accept' => 'application/json',
-            'X-API-Key' => $apiKey,
-        ];
-
-        $client = new Client();
-
-        try {
-            $apiResponse = $client->post($url, [
-                'headers' => $headers,
-                'json' => $data,
-                'timeout' => 5,
-            ]);
-
-            $body = $apiResponse->getBody()->getContents();
-
-            return $body;
-
-        } catch (RequestException $e) {
-            if ($e->hasResponse()) {
-                $errorBody = $e->getResponse()->getBody()->getContents();
-                return $errorBody;
-            } else {
-                return null;
-            }
-        }
-    }
 }

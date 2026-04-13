@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', function () {
         var a = g.closest('form');
         if (!a) return;
         a.addEventListener('submit', function () {
-            var response = g.querySelector('input[name="frc-captcha-response"]');
+            var widget = g.querySelector('.frc-captcha');
+            var response = widget ? widget.querySelector('input[name="frc-captcha-response"]') : null;
             var hidden = g.querySelector('.form-frc-captcha-response');
             if (response && hidden) {
                 hidden.value = response.value;
