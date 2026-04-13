@@ -69,7 +69,7 @@ class FriendlyCaptchaValidator extends AbstractValidator
             return;
         }
          if (!is_string($value) || $value === ''||  $value === '.UNACTIVATED' || $value === '.ACTIVATED') {
-            $this->addTranslatedErrorById(17002, 'Captcha missing affee.');
+            $this->addTranslatedErrorById(17002, 'Captcha missing.');
             return;
         }
 
