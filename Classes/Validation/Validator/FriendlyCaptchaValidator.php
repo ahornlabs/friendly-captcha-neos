@@ -3,9 +3,8 @@ declare(strict_types=1);
 
 namespace Ahorn\FriendlyCaptcha\Validation\Validator;
 
+use Ahorn\FriendlyCaptcha\Service\FriendlyCaptchaVerificationService;
 use Neos\Flow\Validation\Validator\AbstractValidator;
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
 use Psr\Log\LoggerInterface;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\I18n\Translator;
@@ -45,6 +44,12 @@ class FriendlyCaptchaValidator extends AbstractValidator
     #[Flow\InjectConfiguration(path: 'apiEndpoint')]
     protected ?string $apiEndpoint = null;
 
+    /**
+     * @Flow\Inject
+     * @var FriendlyCaptchaVerificationService
+     */
+    protected $friendlyCaptchaVerificationService;
+
     protected $acceptsEmptyValues = false;
 
     protected $supportsEmptyValues = false; 
@@ -64,20 +69,20 @@ class FriendlyCaptchaValidator extends AbstractValidator
             return;
         }
          if (!is_string($value) || $value === ''||  $value === '.UNACTIVATED' || $value === '.ACTIVATED') {
-            $this->addTranslatedErrorById(17002, 'Captcha missing affee.');
+            $this->addTranslatedErrorById(17002, 'Captcha missing.');
             return;
         }
 
-        $raw = $this->verifyCaptchaSolutionV2(
-            'https://' . $this->apiEndpoint . '.frcapi.com/api/v2/captcha/siteverify',
+        $response = $this->friendlyCaptchaVerificationService->verifyV2(
             $value,
-            $this->apiKey
+            $this->apiKey,
+            $this->siteKey,
+            $this->apiEndpoint
         );
-
-        $response = $raw ? json_decode($raw, true) : [];
 
         if (empty($response)) {
             $this->addTranslatedErrorById(1735489214, 'Validation server is not responding.');
+            return;
         }
 
         if (!$response['success']) {
@@ -94,41 +99,6 @@ class FriendlyCaptchaValidator extends AbstractValidator
                 default              => 1380742851,
             };
             $this->addTranslatedErrorById($errorId, $code);
-        }
-    }
-
-     private function verifyCaptchaSolutionV2($url, $response, $apiKey)
-    {
-
-        $data = ['response' => $response];
-        $headers = [
-            'Content-Type' => 'application/json',
-            'Accept' => 'application/json',
-            'X-API-Key' => $apiKey,
-        ];
-
-        $client = new Client();
-        $verify = true;
-
-        try {
-            $apiResponse = $client->post($url, [
-                'headers' => $headers,
-                'json' => $data,
-                'timeout' => 5,
-                'verify' => $verify,
-            ]);
-
-            $body = $apiResponse->getBody()->getContents();
-
-            return $body;
-
-        } catch (RequestException $e) {
-            if ($e->hasResponse()) {
-                $errorBody = $e->getResponse()->getBody()->getContents();
-                return $errorBody;
-            } else {
-                return null;
-            }
         }
     }
 
