@@ -46,6 +46,10 @@ class Captcha extends AbstractFormElement
             ? $properties['overrideApiEndpoint']
             : ($this->settings['apiEndpoint'] ?? 'global');
 
+        $siteKey = $overrideKeys && !empty($properties['overrideSiteKey'])
+            ? $properties['overrideSiteKey']
+            : ($this->settings['siteKey'] ?? null);
+
         if (empty($apiKey) || $apiKey == 'add-your-api-key') {
             $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
             $processingRule->getProcessingMessages()->addError(new Error('Error. Please try again later.', 17942348245));
@@ -62,7 +66,7 @@ class Captcha extends AbstractFormElement
         $response = $this->friendlyCaptchaVerificationService->verifyV2(
             $elementValue,
             $apiKey,
-            null,
+            $siteKey,
             $apiEndpoint
         );
 
