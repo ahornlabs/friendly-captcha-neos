@@ -31,7 +31,7 @@ class FriendlyCaptchaVerificationService
      * @param string|null $apiEndpoint Optional endpoint override (global|eu|us)
      * @return array Decoded API response or an empty array on transport/decode failure
      */
-    public function verifyV2(
+    public function callVerifyApi(
         string $captchaResponse,
         ?string $apiKey = null,
         ?string $siteKey = null,
@@ -45,7 +45,7 @@ class FriendlyCaptchaVerificationService
             return [];
         }
 
-        $raw = $this->verifyCaptchaSolutionV2(
+        $raw = $this->sendVerifyRequest(
             'https://' . $resolvedApiEndpoint . '.frcapi.com/api/v2/captcha/siteverify',
             $captchaResponse,
             $resolvedApiKey,
@@ -58,6 +58,40 @@ class FriendlyCaptchaVerificationService
 
         $decoded = json_decode($raw, true);
         return is_array($decoded) ? $decoded : [];
+    }
+
+    /**
+     * Verify a captcha solution string and return null on success or an error ID on failure.
+     *
+     * Error IDs:
+     *   1515642243 — solution missing
+     *   1735489214 — verification server not responding
+     *   see resolveErrorId() for API error codes
+     *
+     * @param string $solution Value of frc-captcha-response
+     * @return int|null null on success, numeric error ID on failure
+     */
+    public function verifySolution(
+        string $solution,
+        ?string $apiKey = null,
+        ?string $siteKey = null,
+        ?string $apiEndpoint = null
+    ): ?int {
+        if (empty($solution)) {
+            return 1515642243;
+        }
+
+        $response = $this->callVerifyApi($solution, $apiKey, $siteKey, $apiEndpoint);
+
+        if (empty($response)) {
+            return 1735489214;
+        }
+
+        if (!$response['success']) {
+            return $this->resolveErrorId($response['error']['error_code'] ?? 'bad_request');
+        }
+
+        return null;
     }
 
     /**
@@ -80,7 +114,7 @@ class FriendlyCaptchaVerificationService
     /**
      * Sends the verification request to FriendlyCaptcha.
      */
-    protected function verifyCaptchaSolutionV2(string $url, string $response, string $apiKey, string $siteKey = ''): ?string
+    protected function sendVerifyRequest(string $url, string $response, string $apiKey, string $siteKey = ''): ?string
     {
         $data = ['response' => $response];
         if ($siteKey !== '') {

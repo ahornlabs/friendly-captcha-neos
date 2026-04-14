@@ -57,13 +57,12 @@ class Captcha extends AbstractFormElement
         }
 
         if (empty($elementValue)) {
-          $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
-          $processingRule->getProcessingMessages()->addError(new Error('You forgot to add the solution parameter.', 1515642243));
-          return;
+            $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
+            $processingRule->getProcessingMessages()->addError(new Error('You forgot to add the solution parameter.', 1515642243));
+            return;
         }
 
-
-        $response = $this->friendlyCaptchaVerificationService->verifyV2(
+        $response = $this->friendlyCaptchaVerificationService->callVerifyApi(
             $elementValue,
             $apiKey,
             $siteKey,
