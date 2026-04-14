@@ -61,6 +61,23 @@ class FriendlyCaptchaVerificationService
     }
 
     /**
+     * Resolve a FriendlyCaptcha error_code to its numeric error ID.
+     */
+    public function resolveErrorId(string $errorCode): int
+    {
+        return match ($errorCode) {
+            'auth_required'      => 1732156724,
+            'auth_invalid'       => 5786245981,
+            'sitekey_invalid'    => 7956325875,
+            'response_missing'   => 8876423767,
+            'response_invalid'   => 1380742852,
+            'response_timeout'   => 1380742853,
+            'response_duplicate' => 1185587569,
+            default              => 1380742851,
+        };
+    }
+
+    /**
      * Sends the verification request to FriendlyCaptcha.
      */
     protected function verifyCaptchaSolutionV2(string $url, string $response, string $apiKey, string $siteKey = ''): ?string

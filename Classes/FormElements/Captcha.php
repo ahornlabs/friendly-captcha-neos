@@ -78,19 +78,10 @@ class Captcha extends AbstractFormElement
 
         if (!$response['success']) {
             $code = $response['error']['error_code'] ?? 'bad_request';
-            $errorId = match ($code) {
-                'auth_required'      => 1732156724,
-                'auth_invalid'       => 5786245981,
-                'sitekey_invalid'    => 7956325875,
-                'response_missing'   => 8876423767,
-                'response_invalid'   => 1380742852,
-                'response_timeout'   => 1380742853,
-                'response_duplicate' => 1185587569,
-                'bad_request'        => 1380742851,
-                default              => 1380742851,
-            };
             $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
-            $processingRule->getProcessingMessages()->addError(new Error($code, $errorId));
+            $processingRule->getProcessingMessages()->addError(
+                new Error($code, $this->friendlyCaptchaVerificationService->resolveErrorId($code))
+            );
         }
     }
 
