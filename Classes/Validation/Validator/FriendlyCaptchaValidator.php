@@ -73,7 +73,7 @@ class FriendlyCaptchaValidator extends AbstractValidator
             return;
         }
 
-        $response = $this->friendlyCaptchaVerificationService->verifyV2(
+        $response = $this->friendlyCaptchaVerificationService->callVerifyApi(
             $value,
             $this->apiKey,
             $this->siteKey,
