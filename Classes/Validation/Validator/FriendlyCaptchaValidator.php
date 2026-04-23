@@ -87,17 +87,7 @@ class FriendlyCaptchaValidator extends AbstractValidator
 
         if (!$response['success']) {
             $code = $response['error']['error_code'] ?? 'unknown_error';
-            $errorId = match ($code) {
-                'auth_required'      => 1732156724,
-                'auth_invalid'       => 5786245981,
-                'sitekey_invalid'    => 7956325875,
-                'response_missing'   => 8876423767,
-                'response_invalid'   => 1380742852,
-                'response_timeout'   => 1380742853,
-                'response_duplicate' => 1185587569,
-                'bad_request'        => 1380742851,
-                default              => 1380742851,
-            };
+            $errorId = $this->friendlyCaptchaVerificationService->resolveErrorId($code);
             $this->addTranslatedErrorById($errorId, $code);
         }
     }
