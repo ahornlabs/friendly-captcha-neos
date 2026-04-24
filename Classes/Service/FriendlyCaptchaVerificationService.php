@@ -87,7 +87,7 @@ class FriendlyCaptchaVerificationService
             return 1735489214;
         }
 
-        if (!$response['success']) {
+        if (($response['success'] ?? false) !== true) {
             return $this->resolveErrorId($response['error']['error_code'] ?? 'bad_request');
         }
 
