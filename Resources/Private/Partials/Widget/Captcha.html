@@ -1,0 +1,9 @@
+{namespace frc=Ahorn\FriendlyCaptcha\ViewHelpers}
+<f:variable name="frcSettings" value="{frc:settings()}" />
+<input type="hidden" name="frc-captcha-response" value="" />
+<div class="frc-captcha"
+     data-sitekey="{frcSettings.siteKey}"
+     data-theme="{frcSettings.theme}"
+     data-api-endpoint="{frcSettings.apiEndpoint}"
+     data-start="{frcSettings.startVerification}"
+     lang="{frcSettings.language}"></div>

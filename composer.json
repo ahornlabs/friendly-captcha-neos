@@ -9,9 +9,17 @@
         "guzzlehttp/psr7": "^1.4 || ^2.0",
         "guzzlehttp/guzzle": "^7.0 || ^8.0"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0 || ^11.0"
+    },
     "autoload": {
         "psr-4": {
             "Ahorn\\FriendlyCaptcha\\": "Classes"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ahorn\\FriendlyCaptcha\\Tests\\": "Tests"
         }
     },
     "suggest": {
@@ -116,5 +124,10 @@
             "Neos.Flow-20220318174300",
             "Neos.Fusion-20220326120900"
         ]
+    },
+    "config": {
+        "allow-plugins": {
+            "neos/composer-plugin": true
+        }
     }
 }

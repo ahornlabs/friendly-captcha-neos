@@ -1,1 +1,5 @@
 /Resources/Private/node_modules
+/Packages
+/vendor
+*.cache
+composer.lock
