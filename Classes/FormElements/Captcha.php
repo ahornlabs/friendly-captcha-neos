@@ -75,7 +75,7 @@ class Captcha extends AbstractFormElement
             return;
         }
 
-        if (!$response['success']) {
+        if (($response['success'] ?? false) !== true) {
             $code = $response['error']['error_code'] ?? 'bad_request';
             $processingRule = $this->getRootForm()->getProcessingRule($this->getIdentifier());
             $processingRule->getProcessingMessages()->addError(

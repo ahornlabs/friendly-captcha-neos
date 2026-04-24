@@ -85,7 +85,7 @@ class FriendlyCaptchaValidator extends AbstractValidator
             return;
         }
 
-        if (!$response['success']) {
+        if (($response['success'] ?? false) !== true) {
             $code = $response['error']['error_code'] ?? 'unknown_error';
             $errorId = $this->friendlyCaptchaVerificationService->resolveErrorId($code);
             $this->addTranslatedErrorById($errorId, $code);

@@ -14,8 +14,8 @@ class FriendlyCaptchaValidatorTest extends TestCase
     /**
      * Build a validator with injected mocks.
      *
-     * The Translator mock returns the fallback string by default so tests stay
-     * readable without needing real translation files.
+     * The Translator mock returns null so addTranslatedErrorById() falls back to
+     * its $fallback string — tests stay readable without real translation files.
      *
      * @param array $serviceResponse  What callVerifyApi() should return
      * @param string|null $apiKey     Simulated injected API key (null = not configured)
