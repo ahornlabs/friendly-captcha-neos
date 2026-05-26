@@ -37,10 +37,40 @@ class SettingsViewHelper extends AbstractViewHelper
     private function resolveLanguage(): string
     {
         $node = $this->templateVariableContainer->get('node');
-        $dimensionLanguage = $node?->getDimensions()['language'][0] ?? null;
+        $dimensionLanguage = $this->resolveNodeDimensionValue($node, 'language');
 
-        $language = $this->language ?? $dimensionLanguage ?? 'de';
+        // Use configured language override first, then the page dimension, then empty string
+        // (FriendlyCaptcha auto-detects from the browser when lang is empty)
+        $language = $this->language ?? $dimensionLanguage ?? '';
 
-        return explode('_', $language)[0];
+        return $language !== '' ? explode('_', $language)[0] : '';
+    }
+
+    /**
+     * Returns the current dimension value for the given node,
+     * compatible with both Neos 8 and Neos 9.
+     *
+     * Neos 9: node->dimensionSpacePoint->coordinates[$dimension]
+     * Neos 8: node->getContext()->getTargetDimensions()[$dimension]
+     */
+    private function resolveNodeDimensionValue(mixed $node, string $dimension): ?string
+    {
+        if ($node === null) {
+            return null;
+        }
+
+        // Neos 9: DimensionSpacePoint class exists and Node has a public $dimensionSpacePoint property
+        if (class_exists(\Neos\ContentRepository\Core\DimensionSpace\DimensionSpacePoint::class)
+            && property_exists($node, 'dimensionSpacePoint')
+        ) {
+            return $node->dimensionSpacePoint->coordinates[$dimension] ?? null;
+        }
+
+        // Neos 8: Node implements NodeInterface with getContext()
+        if (method_exists($node, 'getContext')) {
+            return $node->getContext()->getTargetDimensions()[$dimension] ?? null;
+        }
+
+        return null;
     }
 }
