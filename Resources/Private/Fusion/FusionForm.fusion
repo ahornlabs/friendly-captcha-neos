@@ -1,7 +1,8 @@
 prototype(Ahorn.FriendlyCaptcha:Fusion.Captcha) < prototype(Neos.Fusion.Form:Component.Field) {
   siteKey = ${Configuration.setting('Ahorn.FriendlyCaptcha.siteKey') ? Configuration.setting('Ahorn.FriendlyCaptcha.siteKey') : null}
   startVerification = ${Configuration.setting('Ahorn.FriendlyCaptcha.startVerification') ? Configuration.setting('Ahorn.FriendlyCaptcha.startVerification') : 'auto'}
-  currentLanguage = ${node.context.targetDimensions.language}
+  // Neos 8/9 compatible: NodeDimensionHelper detects the version at runtime
+  currentLanguage = ${Ahorn.FriendlyCaptcha.currentDimensionValue(node, 'language')}
   apiEndpoint = ${Configuration.setting('Ahorn.FriendlyCaptcha.apiEndpoint') ? Configuration.setting('Ahorn.FriendlyCaptcha.apiEndpoint') : 'global'}
   theme = ${Configuration.setting('Ahorn.FriendlyCaptcha.theme') ? Configuration.setting('Ahorn.FriendlyCaptcha.theme') : 'auto'}
 

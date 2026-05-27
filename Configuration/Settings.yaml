@@ -19,12 +19,19 @@ Neos:
         autoInclude:
           'Ahorn.FriendlyCaptcha':
             - 'NodeTypes/*'
+  Fusion:
+    defaultContext:
+      # Registers NodeDimensionHelper as "Ahorn.FriendlyCaptcha" in Fusion EEL context.
+      # Usage: ${Ahorn.FriendlyCaptcha.currentDimensionValue(node, 'language')}
+      # Provides Neos 8/9 compatible dimension value access.
+      'Ahorn.FriendlyCaptcha': 'Ahorn\FriendlyCaptcha\Eel\Helper\NodeDimensionHelper'
 
 Ahorn:
   FriendlyCaptcha:
     siteKey: 'add-your-site-key'
     apiKey: 'add-your-api-key'
-    language: 'de'
+    # language: null  # When null, the current page dimension is used automatically.
+    #                 # Set to a fixed value (e.g. 'en') to override for all forms.
     startVerification: 'auto'
     apiEndpoint: 'global'
     theme: 'auto'
