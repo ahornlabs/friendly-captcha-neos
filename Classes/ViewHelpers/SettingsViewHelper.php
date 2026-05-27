@@ -68,7 +68,12 @@ class SettingsViewHelper extends AbstractViewHelper
 
         // Neos 8: Node implements NodeInterface with getContext()
         if (method_exists($node, 'getContext')) {
-            return $node->getContext()->getTargetDimensions()[$dimension] ?? null;
+            $targetDimensions = $node->getContext()->getTargetDimensions();
+            $value = $targetDimensions[$dimension] ?? null;
+            if (is_array($value)) {
+                return $value[0] ?? null;
+            }
+            return is_string($value) ? $value : null;
         }
 
         return null;
